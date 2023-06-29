@@ -55,6 +55,7 @@ public class StudyController {
                 study.getPeople(),
                 assignments.stream()
                         .map(assignment -> new GetStudyResponse.AssignmentDto(
+                                assignment.getId(),
                                 assignment.getWeekNum(),
                                 assignment.getAssignment()))
                         .toList()
