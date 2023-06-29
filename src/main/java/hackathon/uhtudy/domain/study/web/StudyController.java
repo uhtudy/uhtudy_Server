@@ -44,14 +44,14 @@ public class StudyController {
 
         final Study study = studyService.getStudy(studyId);
 
-        final int lastIndex = study.getCurriculums().size() - 1;
+        final int lastIndex = Math.max(0, study.getCurriculums().size() - 1);
 
         final List<Assignment> assignments = assignmentRepository.findAssignmentsByStudy(study);
 
         return new GetStudyResponse(
                 study.getTitle(),
                 study.getGoal(),
-                study.getCurriculums().get(lastIndex).getAnnouncement(), //가장 마지막주차 (= 가장 최신) 공지
+                lastIndex == 0 ? null : study.getCurriculums().get(lastIndex).getAnnouncement(), //가장 마지막주차 (= 가장 최신) 공지
                 study.getPeople(),
                 assignments.stream()
                         .map(assignment -> new GetStudyResponse.AssignmentDto(

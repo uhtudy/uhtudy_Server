@@ -39,7 +39,6 @@ public class Study {
         this.goal = goal;
         this.isMyStudy = false;
         this.attendCode = UUID.randomUUID().toString();
-        System.out.println("attendCode = " + attendCode);
     }
     public void update(){
         this.isMyStudy = true;
