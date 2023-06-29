@@ -28,7 +28,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: ‘correto’
+        distribution: ‘corretto’
         
     - name: make application.properties 파일 생성
       run: |
