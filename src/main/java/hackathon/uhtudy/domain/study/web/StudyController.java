@@ -56,4 +56,10 @@ public class StudyController {
                         .toList()
         );
     }
+
+
+    @GetMapping("/attendCode/{studyId}")
+    public String getAttendCode(@PathVariable final Long studyId) {
+        return studyService.getAttendCode(studyId);
+    }
 }
