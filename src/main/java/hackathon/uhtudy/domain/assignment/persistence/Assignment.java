@@ -21,6 +21,8 @@ public class Assignment {
     private Integer weekNum;
     private String assignment;
 
+    private boolean absent; //과제 수행 여부
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curriculum_id")
     private Curriculum curriculum;
@@ -34,10 +36,15 @@ public class Assignment {
         this.weekNum = weekNum;
         this.assignment = assignment;
         this.setCurriculum(curriculum);
+        this.absent = false;
     }
 
     private void setCurriculum(final Curriculum curriculum) {
         this.curriculum = curriculum;
         curriculum.getAssignments().add(this);
     }
+
+
+    //TODO : 수행여부 true 로직 작성하기
+
 }
