@@ -5,8 +5,10 @@ import hackathon.uhtudy.domain.curriculum.web.request.CurriculumSaveRequestDto;
 import hackathon.uhtudy.domain.study.persistence.Study;
 import hackathon.uhtudy.domain.study.persistence.StudyRepository;
 import hackathon.uhtudy.domain.study.web.request.StudySaveRequestDto;
+import hackathon.uhtudy.domain.study.web.response.StudyMainResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +23,16 @@ public class StudyService {
             CurriculumRequestDto curriculumRequestDto = new CurriculumRequestDto(saveRequestDto.getWeekNum(), saveRequestDto.getTitle(), study, saveRequestDto.getAnnouncement());
         }
         return study.getAttendCode();
+    }
+
+    public StudyMainResponseDto.StudyListResponseDto getStudyList(){
+        List<Study> studyList = studyRepository.findAll();
+        List<StudyMainResponseDto.StudyOverviewDto> studyOverviewDtos = new ArrayList<>();
+        for(Study study : studyList){
+            StudyMainResponseDto.StudyOverviewDto overviewDto = new StudyMainResponseDto.StudyOverviewDto(study.getId(), study.getTitle(), study.getGoal(), "홍대 할리스");
+            studyOverviewDtos.add(overviewDto);
+        }
+        StudyMainResponseDto.StudyListResponseDto listResponseDto = new StudyMainResponseDto.StudyListResponseDto(studyOverviewDtos);
+        return listResponseDto;
     }
 }
