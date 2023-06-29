@@ -9,6 +9,7 @@
 ### CUSTOM ###
 *application-mysql.yml*
 *.gradle*
+build
 
 
 # User-specific stuff

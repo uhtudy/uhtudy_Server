@@ -19,8 +19,10 @@ public class Curriculum {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer weekNum;
     private String title;
-    private boolean absent;
+    private boolean absent; //해당 주차의 스터디 참석여부
+    private String announcement;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "study_id")
@@ -29,10 +31,18 @@ public class Curriculum {
     @OneToMany(mappedBy = "curriculum")
     private List<Assignment> assignments = new ArrayList<>();
 
-    public Curriculum(final String title, final boolean absent, final Study study) {
+    public Curriculum(
+            final Integer weekNum,
+            final String title,
+            final Study study,
+            final String announcement) {
+
+        this.weekNum = weekNum;
         this.title = title;
-        this.absent = absent;
+        this.announcement = announcement;
         this.setStudy(study);
+
+        this.absent = false;
     }
 
 
@@ -40,4 +50,7 @@ public class Curriculum {
         this.study = study;
         study.getCurriculums().add(this);
     }
+
+    //TODO : 해당 주차 참석시 absent = true로 바꾸는 로직 작성하기
+
 }
