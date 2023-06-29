@@ -30,10 +30,14 @@ public class StudyController {
     }
 
     @GetMapping("/studies")
-    private StudyMainResponseDto.StudyListResponseDto getStudyList() {
+    private List<StudyMainResponseDto> getStudyList() {
         return studyService.getStudyList();
     }
 
+    @PostMapping("/attendCode/{attendCode}")
+    private void attendStudy(@PathVariable String attendCode){
+        studyService.attendStudy(attendCode);
+    }
 
     @GetMapping("/studies/{studyId}")
     public GetStudyResponse getStudy(@PathVariable final Long studyId) {

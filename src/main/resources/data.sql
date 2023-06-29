@@ -1,5 +1,5 @@
-INSERT INTO study(title, people, goal, attend_code)
-VALUES ('Problem Solving Study', 7, 'Always do your best!', '550e8400-e29b-41d4-a716-446655440000');
+INSERT INTO study(title, people, goal, attend_code, is_my_study)
+VALUES ('Problem Solving Study', 7, 'Always do your best!', '550e8400-e29b-41d4-a716-446655440000', false);
 
 INSERT INTO curriculum(week_num, title, absent, announcement, study_id)
 VALUES (1, '백준 실버문제 다풀기', false, '1주차는 필수입니다', 1),
