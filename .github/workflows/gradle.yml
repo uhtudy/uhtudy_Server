@@ -32,18 +32,18 @@ jobs:
         
     - name: make application.properties 파일 생성
       run: |
-        ## create application.yml
+        ## create application-mysql.yml
         mkdir ./src/main/resources
         cd ./src/main/resources
 
         # application.yml 파일 생성
-        touch ./application.yml
+        touch ./application-mysql.yml
 
         # GitHub-Actions 에서 설정한 값을 application.yml 파일에 쓰기
-        echo "${{ secrets.UHTUDY_APPLICATION }}" >> ./application.yml
+        echo "${{ secrets.UHTUDY_APPLICATION_SQL }}" >> ./application-mysql.yml
         
         # application.yml 파일 확인
-        cat ./application.yml
+        cat ./application-mysql.yml
       shell: bash
         
     # 이 워크플로우는 gradle build
