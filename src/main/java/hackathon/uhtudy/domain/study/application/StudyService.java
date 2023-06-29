@@ -41,4 +41,12 @@ public class StudyService {
 
         return studyRepository.findById(studyId).orElseThrow(IllegalArgumentException::new);
     }
+
+    public String getAttendCode(final Long studyId) {
+
+        final Study study = studyRepository.findById(studyId)
+                .orElseThrow(IllegalArgumentException::new);
+
+        return study.getAttendCode();
+    }
 }
