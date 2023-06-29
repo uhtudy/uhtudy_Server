@@ -3,13 +3,16 @@ package hackathon.uhtudy.domain.assignment.persistence;
 import hackathon.uhtudy.domain.comment.persistence.Comment;
 import hackathon.uhtudy.domain.curriculum.persistence.Curriculum;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Assignment {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +28,16 @@ public class Assignment {
 
     @OneToMany(mappedBy = "assignment")
     private List<Comment> comments = new ArrayList<>();
+
+
+    public Assignment(final Integer weekNum, final String assignment, final Curriculum curriculum) {
+        this.weekNum = weekNum;
+        this.assignment = assignment;
+        this.setCurriculum(curriculum);
+    }
+
+    private void setCurriculum(final Curriculum curriculum) {
+        this.curriculum = curriculum;
+        curriculum.getAssignments().add(this);
+    }
 }
