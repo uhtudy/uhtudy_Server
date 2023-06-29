@@ -7,6 +7,7 @@ import hackathon.uhtudy.domain.curriculum.persistence.CurriculumRepository;
 import hackathon.uhtudy.domain.study.persistence.StudyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,12 +17,16 @@ public class AssignmentService {
     private final CurriculumRepository curriculumRepository;
     private final StudyRepository studyRepository;
 
+
+    @Transactional(readOnly = true)
     public Assignment getCodeReview(final Long assignmentId) {
 
         return assignmentRepository.findById(assignmentId)
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+
+    @Transactional
     public void submitAssignment(final Long studyId, final int weekNum, final SubmitAssignmentRequest request) {
 
         final var study = studyRepository.findById(studyId)

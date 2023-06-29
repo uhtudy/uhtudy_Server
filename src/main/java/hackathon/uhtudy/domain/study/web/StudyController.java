@@ -25,7 +25,7 @@ public class StudyController {
     private final AssignmentRepository assignmentRepository;
 
     @PostMapping("/studies")
-    private StudyCodeResponseDto createStudy(@RequestBody StudySaveRequestDto requestDto){
+    private StudyCodeResponseDto createStudy(@RequestBody final StudySaveRequestDto requestDto){
         return new StudyCodeResponseDto(studyService.createStudy(requestDto));
     }
 
