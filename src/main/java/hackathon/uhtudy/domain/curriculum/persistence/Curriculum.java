@@ -51,6 +51,9 @@ public class Curriculum {
         study.getCurriculums().add(this);
     }
 
-    //TODO : 해당 주차 참석시 absent = true로 바꾸는 로직 작성하기
 
+    @Override
+    public String toString() {
+        return "\t assignments : " + assignments;
+    }
 }

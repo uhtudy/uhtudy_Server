@@ -47,8 +47,4 @@ public class Assignment {
         this.curriculum = curriculum;
         curriculum.getAssignments().add(this);
     }
-
-
-    //TODO : 수행여부 true 로직 작성하기
-
 }
