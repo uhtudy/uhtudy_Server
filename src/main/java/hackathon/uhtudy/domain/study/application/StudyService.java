@@ -25,14 +25,20 @@ public class StudyService {
         return study.getAttendCode();
     }
 
-    public StudyMainResponseDto.StudyListResponseDto getStudyList(){
+    public StudyMainResponseDto.StudyListResponseDto getStudyList() {
         List<Study> studyList = studyRepository.findAll();
         List<StudyMainResponseDto.StudyOverviewDto> studyOverviewDtos = new ArrayList<>();
-        for(Study study : studyList){
+        for (Study study : studyList) {
             StudyMainResponseDto.StudyOverviewDto overviewDto = new StudyMainResponseDto.StudyOverviewDto(study.getId(), study.getTitle(), study.getGoal(), "홍대 할리스");
             studyOverviewDtos.add(overviewDto);
         }
         StudyMainResponseDto.StudyListResponseDto listResponseDto = new StudyMainResponseDto.StudyListResponseDto(studyOverviewDtos);
         return listResponseDto;
+    }
+
+
+    public Study getStudy(final Long studyId) {
+
+        return studyRepository.findById(studyId).orElseThrow(IllegalArgumentException::new);
     }
 }
