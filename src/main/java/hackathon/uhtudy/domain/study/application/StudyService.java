@@ -5,6 +5,9 @@ import hackathon.uhtudy.domain.study.persistence.Study;
 import hackathon.uhtudy.domain.study.persistence.StudyRepository;
 import hackathon.uhtudy.domain.study.web.request.StudySaveRequestDto;
 import hackathon.uhtudy.domain.study.web.response.StudyMainResponseDto;
+import hackathon.uhtudy.global.slack.SlackConstant;
+import hackathon.uhtudy.global.slack.SlackMessage;
+import hackathon.uhtudy.global.slack.SlackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +18,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class StudyService {
 
+    private final SlackService slackService;
     private final StudyRepository studyRepository;
     private final CurriculumService curriculumService;
 
@@ -27,6 +31,11 @@ public class StudyService {
         studyRepository.save(study);
 
         curriculumService.createCurriculum(requestDto.getCurriculumList(), study);
+
+        slackService.sendSlackMessage(
+                new SlackMessage(study),
+                SlackConstant.ANNOUNCEMENT_CHANNEL
+        );
 
         return study.getAttendCode();
     }

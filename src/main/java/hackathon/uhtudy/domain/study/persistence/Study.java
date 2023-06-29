@@ -40,7 +40,17 @@ public class Study {
         this.isMyStudy = false;
         this.attendCode = UUID.randomUUID().toString();
     }
-    public void update(){
+
+    public void update() {
         this.isMyStudy = true;
+    }
+
+
+    @Override
+    public String toString() {
+        return "title : '" + title + '\'' +
+                "\t goal : '" + goal + '\'' +
+                "\t curriculums : " + curriculums +
+                '}';
     }
 }
