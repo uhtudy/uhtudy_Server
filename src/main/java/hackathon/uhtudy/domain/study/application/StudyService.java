@@ -7,6 +7,7 @@ import hackathon.uhtudy.domain.study.persistence.StudyRepository;
 import hackathon.uhtudy.domain.study.web.request.StudySaveRequestDto;
 import hackathon.uhtudy.domain.study.web.response.StudyMainResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -26,7 +27,7 @@ public class StudyService {
     }
 
     public StudyMainResponseDto.StudyListResponseDto getStudyList(){
-        List<Study> studyList = studyRepository.findAll();
+        List<Study> studyList = studyRepository.getStudiesByIsMyStudy().orElseThrow(() -> new IllegalArgumentException());
         List<StudyMainResponseDto.StudyOverviewDto> studyOverviewDtos = new ArrayList<>();
         for(Study study : studyList){
             StudyMainResponseDto.StudyOverviewDto overviewDto = new StudyMainResponseDto.StudyOverviewDto(study.getId(), study.getTitle(), study.getGoal(), "홍대 할리스");
