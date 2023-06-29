@@ -26,7 +26,7 @@ public class GetStudyResponse {
     @Getter
     @RequiredArgsConstructor
     public static class AssignmentDto {
-
+        final Long assignmentId;
         final int weekNum;
         final String title;
     }
