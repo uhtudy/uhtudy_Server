@@ -46,7 +46,7 @@ public class StudyController {
 
         final int lastIndex = Math.max(0, study.getCurriculums().size() - 1);
 
-        final List<Assignment> assignments = assignmentRepository.findAssignmentsByStudy(study);
+        final List<Assignment> assignments = assignmentRepository.findAssignmentsByStudy(study).subList(0,5);
 
         return new GetStudyResponse(
                 study.getTitle(),
