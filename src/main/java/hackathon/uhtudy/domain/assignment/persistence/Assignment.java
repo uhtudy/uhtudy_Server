@@ -32,11 +32,15 @@ public class Assignment {
     private List<Comment> comments = new ArrayList<>();
 
 
-    public Assignment(final Integer weekNum, final String assignment, final Curriculum curriculum) {
+    public Assignment(
+            final Integer weekNum,
+            final String assignment,
+            final boolean absent,
+            final Curriculum curriculum) {
         this.weekNum = weekNum;
         this.assignment = assignment;
+        this.absent = absent;
         this.setCurriculum(curriculum);
-        this.absent = false;
     }
 
     private void setCurriculum(final Curriculum curriculum) {
