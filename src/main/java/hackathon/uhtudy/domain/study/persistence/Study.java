@@ -23,8 +23,6 @@ public class Study {
     private Integer people;
     private String goal;
     private String attendCode;
-    private String place;
-    private boolean isAttend;
 
     @OneToMany(mappedBy = "study")
     private List<Curriculum> curriculums = new ArrayList<>();
@@ -33,15 +31,11 @@ public class Study {
     public Study(
             final String title,
             final Integer people,
-            final String goal,
-            final String place,
-            final boolean isAttend) {
+            final String goal) {
 
         this.title = title;
         this.people = people;
         this.goal = goal;
-        this.place = place;
-        this.isAttend = isAttend;
 
         this.attendCode = UUID.randomUUID().toString();
     }
